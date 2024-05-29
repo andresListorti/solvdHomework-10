@@ -1,0 +1,55 @@
+
+The provided code implements a custom hash table data structure using separate chaining for collision handling. Here's a breakdown of the key components:
+
+Custom Hash Function (customHash):
+This function takes a string str and an optional hashSize (default: 53) as input.
+It calculates a hash code for the input string using a simple hash function that iterates over the characters and performs modular arithmetic.
+The hash function uses the prime number 31 as a multiplier to help distribute the hash codes more evenly.
+The final hash code is returned as the result.
+
+Node Class (Node):
+This class represents a node in a linked list.
+Each node has a key, value, and a reference to the next node in the list.
+
+Separate Chaining Class (SeparateChaini<wbr>ng):
+This class implements the separate chaining technique for collision handling in the hash table.
+It has an array of buckets (this.buckets), where each bucket is a linked list.
+The insert method calculates the hash code for the given key using the customHash function and inserts the key-value pair into the corresponding bucket's linked list.
+The get method calculates the hash code for the given key and traverses the corresponding bucket's linked list to find the value associated with the key.
+The delete method calculates the hash code for the given key and removes the corresponding key-value pair from the bucket's linked list.
+
+HashTable Class (HashTable):
+This class serves as a wrapper around the SeparateChainin<wbr>g class, providing a simple interface for working with the hash table.
+It has a hashSize property (default: 53) and an instance of the SeparateChainin<wbr>g class (this.buckets).
+The insert, get, and delete methods delegate the respective operations to the SeparateChainin<wbr>g instance.
+
+Test Function (runTests):
+This function demonstrates the usage of the HashTable class by performing various operations and printing the expected outputs.
+It tests the insert, get, delete, and collision handling scenarios.
+
+Analysis:
+The performance of the custom hash table implementation depends on the efficiency of the hash function and the collision handling mechanism.
+
+Hash Function Performance:
+The customHash function has a time complexity of O(k), where k is the length of the input string. This is because it iterates over each character of the string once.
+The hash function is simple and efficient, but it may not distribute the hash codes evenly for all input strings, leading to potential collisions.
+
+Insertion Performance:
+The time complexity of the insert operation is O(1) on average, assuming a good hash function that distributes the keys evenly across the buckets.
+In the worst case, where all keys hash to the same bucket, the time complexity becomes O(n), where n is the number of elements in the bucket's linked list.
+
+Retrieval Performance:
+The time complexity of the get operation is O(1) on average, assuming a good hash function and even distribution of keys across buckets.
+In the worst case, where all keys hash to the same bucket, the time complexity becomes O(n), where n is the number of elements in the bucket's linked list.
+
+Deletion Performance:
+The time complexity of the delete operation is O(1) on average, assuming a good hash function and even distribution of keys across buckets.
+In the worst case, where all keys hash to the same bucket, the time complexity becomes O(n), where n is the number of elements in the bucket's linked list.
+
+Trade-offs: 
+- The separate chaining implementation handles collisions by creating linked lists in each bucket. This approach has the advantage of allowing unlimited key-value pairs to be stored in the hash table, but it can lead to performance degradation if the number of collisions becomes too high. 
+- The choice of the hash size (prime number 53 in this case) can affect the distribution of keys across buckets and the likelihood of collisions. A larger hash size can reduce collisions but may increase memory usage. 
+- The custom hash function used in this implementation is simple and may not distribute the keys evenly for all input strings, potentially leading to more collisions.
+
+Overall, the provided implementation offers a balance between simplicity and performance, with the separate chaining technique handling collisions effectively. 
+
